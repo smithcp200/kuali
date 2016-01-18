@@ -1,5 +1,7 @@
 package com.cps.kualitest.models;
 
+import com.cps.kualitest.exceptions.InvalidFloorRequest;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +12,28 @@ public class ElevatorController {
 
     List<Elevator> elevatorList = new ArrayList<Elevator>();
 
-    public void init(int numberOfElevators) {
+    public boolean receiveRequest(int fromFloor, int toFloor){
+
+        boolean requestFilled = false;
+        // check to see if any of the elevators are on the "fromFloor".  If so, then it will fill the request;
+        for(Elevator currentElevator : elevatorList){
+            if(currentElevator.inService && currentElevator.currentFloor == fromFloor){
+                try {
+                    currentElevator.gotoFloor(toFloor);
+                } catch (InvalidFloorRequest invalidFloorRequest) {
+                    invalidFloorRequest.printStackTrace();
+                }
+                requestFilled = true;
+                break;
+            }
+        }
+        return requestFilled;
+    }
+
+    public void init(int numberOfElevators, int numberOfFloors) {
         // just init elevators
         for(int i = 0; i < numberOfElevators; i++){
-            elevatorList.add(new Elevator());
+            elevatorList.add(new Elevator(i, numberOfFloors));
         }
     }
 
