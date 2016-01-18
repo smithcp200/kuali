@@ -5,10 +5,12 @@ package com.cps.kualitest.models;
  */
 public class BuildingFloor {
 
-    public BuildingFloor(int floorNumber){
+    public BuildingFloor(int floorNumber, ElevatorController controller){
         this.floorNumber = floorNumber;
+        this.controller = controller;
     }
 
+    ElevatorController controller;
     int floorNumber;
 
     public int getFloorNumber() {
@@ -17,5 +19,9 @@ public class BuildingFloor {
 
     public void setFloorNumber(int floorNumber) {
         this.floorNumber = floorNumber;
+    }
+
+    public boolean makeRequest(int toFloor){
+        return controller.receiveRequest(getFloorNumber(), toFloor);
     }
 }
