@@ -24,14 +24,26 @@ public class Elevator {
     int completedTrips = 0;
     int floorsPassed = 0;
 
+    /**
+     * Feature #3
+     */
     public void openDoor(){
         System.out.println("Elevator " + elevatorId + " opens door");
     }
 
+    /**
+     * Feature #3
+     */
     public void closeDoor(){
         System.out.println("Elevator " + elevatorId + " closes door");
     }
 
+    /**
+     * Feature #2 and #4 and #5
+     *
+     * @param floor
+     * @throws InvalidFloorRequest
+     */
     public void gotoFloor(int floor) throws InvalidFloorRequest {
         if(floor < minFloorLevel || floor > maxFloorLevel){
             throw new InvalidFloorRequest();
@@ -61,11 +73,15 @@ public class Elevator {
         openDoor();
         System.out.println("Elevator has arrived at destination floor " + floor);
         completedTrips += 1;
+        // feature #8
         if(completedTrips == 100){
             serviceRequired();
         }
     }
 
+    /**
+     * Feature #8
+     */
     private void serviceRequired() {
         inService = false;
         try {

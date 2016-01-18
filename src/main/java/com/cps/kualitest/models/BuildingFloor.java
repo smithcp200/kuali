@@ -21,6 +21,12 @@ public class BuildingFloor {
         this.floorNumber = floorNumber;
     }
 
+    /**
+     * Make a request from this floor to another floor via the controller
+     * Feature #6
+     * @param toFloor
+     * @return
+     */
     public boolean makeRequest(int toFloor){
         return controller.receiveRequest(getFloorNumber(), toFloor);
     }

@@ -12,6 +12,13 @@ public class ElevatorController {
 
     List<Elevator> elevatorList = new ArrayList<Elevator>();
 
+    /**
+     * Feature #7
+     * 
+     * @param fromFloor
+     * @param toFloor
+     * @return
+     */
     public boolean receiveRequest(int fromFloor, int toFloor){
 
         boolean requestFilled = false;

@@ -11,6 +11,16 @@ import java.util.List;
  */
 public class Building {
 
+
+    /**
+     *
+     * @param numberOfFloors
+     * @param numberOfElevators
+     * @throws InvalidNumberOfElevatorsException
+     * @throws InvalidNumberFloorsException
+     *
+     * Feature #1
+     */
     public Building(int numberOfFloors, int numberOfElevators) throws InvalidNumberOfElevatorsException, InvalidNumberFloorsException {
         // must have at least on floor and one elevator
         if(numberOfElevators < 1){
