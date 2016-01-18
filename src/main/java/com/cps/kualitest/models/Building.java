@@ -22,11 +22,12 @@ public class Building {
         }
 
         //initialize the floors and the elevators
+        controller.init(numberOfElevators, numberOfFloors);
+
         for(int i = 0; i < numberOfFloors; i++){
-            floors.add(new BuildingFloor(i+1));
+            floors.add(new BuildingFloor(i+1, controller));
         }
 
-        controller.init(numberOfElevators);
 
     }
 
