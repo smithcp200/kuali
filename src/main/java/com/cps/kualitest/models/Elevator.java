@@ -19,13 +19,17 @@ public class Elevator {
     boolean idle;
     int currentFloor;
     ElevatorDirection direction;
+    boolean inService = true;
+
+    int completedTrips = 0;
+    int floorsPassed = 0;
 
     public void openDoor(){
-
+        System.out.println("Elevator " + elevatorId + " opens door");
     }
 
     public void closeDoor(){
-
+        System.out.println("Elevator " + elevatorId + " closes door");
     }
 
     public void gotoFloor(int floor) throws InvalidFloorRequest {
@@ -50,11 +54,30 @@ public class Elevator {
                 currentFloor = currentFloor - 1;
                 System.out.println("Elevator moving past floor " + currentFloor + " en route to floor " + floor);
             }
+            floorsPassed++;
         }
 
         idle = true;
         openDoor();
         System.out.println("Elevator has arrived at destination floor " + floor);
+        completedTrips += 1;
+        if(completedTrips == 100){
+            serviceRequired();
+        }
+    }
+
+    private void serviceRequired() {
+        inService = false;
+        try {
+            gotoFloor(1);
+        } catch (InvalidFloorRequest invalidFloorRequest) {
+            invalidFloorRequest.printStackTrace();
+        }
+    }
+
+    public void serviceElevator(){
+        inService = true;
+        completedTrips = 0;
     }
 
     public int distanceFromFloor(int floor){
